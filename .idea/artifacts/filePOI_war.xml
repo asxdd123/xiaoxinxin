@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="filePOI:war">
+    <output-path>$PROJECT_DIR$/../filePOI/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>filePOI</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="filePOI-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="filePOI:war exploded" />
+    </root>
+  </artifact>
+</component>
