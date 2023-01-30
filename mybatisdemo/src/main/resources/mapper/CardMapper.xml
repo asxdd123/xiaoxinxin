@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mybatis.mapper.CardMapper">
+    <!--第一种-->
+    <!--        配置字段和实体对象属性的映射关系-->
+    <!--      字段唯一标识   type:实体对象-->
+    <resultMap id="oneToOneMap" type="mybatis.entry.Card">
+        <!--
+            column   数据库列名
+            property  对象属性名(java代码里的名称)
+            id        主键配置
+            result    其他键设置
+         -->
+        <id column="cid" property="id"/>
+        <result column="number" property="number"/>
+
+        <!--配置一对一关系
+             association：配置被包含对象的映射关系
+             property：被包含对象的变量名(例如:card实体类中的p变量)
+             javaType：被包含对象的数据类型
+         -->
+        <association property="p" javaType="mybatis.entry.Person">
+            <id column="pid" property="id"/>
+            <result column="name" property="name"/>
+            <result column="age" property="age"/>
+        </association>
+    </resultMap>
+
+    <!--第二种    -->
+    <!--    <resultMap id="oneToOneMap" type="mybatis.entry.Card">-->
+    <!--        <id column="cid" property="id" />-->
+    <!--        <result column="number" property="number" />-->
+    <!--        <result column="pid" property="p.id" />-->
+    <!--        <result column="name" property="p.name" />-->
+    <!--        <result column="age" property="p.age" />-->
+    <!--    </resultMap>-->
+
+    <!--    一对一-->
+    <select id="oneToOne" resultMap="oneToOneMap">
+         SELECT
+            c.id cid,number,pid,NAME,age
+         FROM
+            card c,person p
+         WHERE
+            c.pid=p.id
+    </select>
+</mapper>

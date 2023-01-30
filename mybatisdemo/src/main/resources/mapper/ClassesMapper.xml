@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mybatis.mapper.ClassesMapper">
+
+    <!--    一对多-->
+    <resultMap id="oneToManyMap" type="classes">
+        <!--
+          column   数据库列名
+          property  对象属性名(java代码里的名称)
+          id        主键配置
+          result    其他键设置
+       -->
+        <id column="cid" property="id"/>
+        <result column="cname" property="name"/>
+
+        <!--
+                collection:配置被包含的集合对象映射关系
+                property: 被包含对象的变量名
+                ofType:被包含对象的实际数据类型
+        -->
+        <collection property="stuList" ofType="mybatis.entry.Stu">
+            <id column="sid" property="id"/>
+            <result column="sname" property="name"/>
+            <result column="age" property="age"/>
+        </collection>
+    </resultMap>
+
+    <select id="oneToMany" resultMap="oneToManyMap">
+        SELECT
+            c.id cid,
+            c.name cname,
+            s.id sid,
+            s.name sname,
+            s.age
+        FROM
+            classes c,stu s
+        WHERE
+            c.id=s.cid
+    </select>
+</mapper>

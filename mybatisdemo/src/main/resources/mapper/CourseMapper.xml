@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mybatis.mapper.CourseMapper">
+
+    <resultMap id="manyToManyMap" type="mybatis.entry.Stu">
+        <!--
+          column   数据库列名
+          property  对象属性名(java代码里的名称)
+          id        主键配置
+          result    其他键设置
+       -->
+        <id column="sid" property="id"/>
+        <result column="sname" property="name"/>
+        <result column="sage" property="age"/>
+        <!--
+                collection：配置被包含的集合对象映射关系
+                property：被包含对象的变量名
+                ofType：被包含对象的实际数据类型
+            -->
+        <collection property="courseList" ofType="course">
+            <id column="cid" property="id"/>
+            <result column="cname" property="name"/>
+        </collection>
+    </resultMap>
+
+
+    <select id="manyToMany" resultMap="manyToManyMap">
+        SELECT
+            sc.sid,
+            s.name sname,
+            s.age sage,
+            sc.cid,
+            c.name cname
+        FROM
+            stu s,
+            course c,
+            stu_cr sc
+        WHERE
+            sc.sid=s.id
+        AND
+            sc.cid=c.id
+    </select>
+
+
+</mapper>
