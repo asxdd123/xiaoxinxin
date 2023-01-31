@@ -27,22 +27,23 @@
     </resultMap>
 
 
-    <select id="manyToMany" resultMap="manyToManyMap">
-        SELECT
-            sc.sid,
-            s.name sname,
-            s.age sage,
-            sc.cid,
-            c.name cname
-        FROM
-            stu s,
-            course c,
-            stu_cr sc
-        WHERE
-            sc.sid=s.id
-        AND
-            sc.cid=c.id
-    </select>
+<!--    多对多基于XML开发-->
+<!--    <select id="manyToMany" resultMap="manyToManyMap">-->
+<!--        SELECT-->
+<!--            sc.sid,-->
+<!--            s.name sname,-->
+<!--            s.age sage,-->
+<!--            sc.cid,-->
+<!--            c.name cname-->
+<!--        FROM-->
+<!--            stu s,-->
+<!--            course c,-->
+<!--            stu_cr sc-->
+<!--        WHERE-->
+<!--            sc.sid=s.id-->
+<!--        AND-->
+<!--            sc.cid=c.id-->
+<!--    </select>-->
 
 
 </mapper>

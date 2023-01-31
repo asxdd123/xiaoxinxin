@@ -1,6 +1,7 @@
 package mybatis.controller;
 
 import mybatis.entry.Course;
+import mybatis.entry.Stu;
 import mybatis.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +21,7 @@ public class CourseController {
     private CourseService courseService;
 
     @RequestMapping("/aa")
-    private List<Course> manyToMany(){
+    private List<Stu> manyToMany(){
         return courseService.manyToMany();
     }
 }

@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import mybatis.entry.Studnt;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -26,4 +27,6 @@ public interface StudentService {
     int deleteSrudent(String id);
 
     int deleteSrudentByNameAndSex(String name, String sex);
+
+    Studnt selectByIdAndName(Map<String, Object> map);
 }

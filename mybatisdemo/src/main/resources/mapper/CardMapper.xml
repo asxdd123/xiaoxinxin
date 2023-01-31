@@ -38,13 +38,13 @@
     <!--        <result column="age" property="p.age" />-->
     <!--    </resultMap>-->
 
-    <!--    一对一-->
-    <select id="oneToOne" resultMap="oneToOneMap">
-         SELECT
-            c.id cid,number,pid,NAME,age
-         FROM
-            card c,person p
-         WHERE
-            c.pid=p.id
-    </select>
+    <!--    一对一基于XML形式-->
+<!--    <select id="oneToOne" resultMap="oneToOneMap">-->
+<!--         SELECT-->
+<!--            c.id cid,number,pid,NAME,age-->
+<!--         FROM-->
+<!--            card c,person p-->
+<!--         WHERE-->
+<!--            c.pid=p.id-->
+<!--    </select>-->
 </mapper>

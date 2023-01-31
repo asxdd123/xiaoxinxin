@@ -8,27 +8,52 @@
         select sid,sname,sage,ssex,url from student
     </sql>
 
-
-    <insert id="insertStudent" parameterType="studnt">
+    <sql id="insertStudent">
         insert into student(sid,sname,sage,ssex,url) values
+    </sql>
+
+
+<!--    需要返回主键id需要加useGeneratedKeys="true"(默认自增),keyProperty="sid"(类中的属性名),keyColumn="sid"(表中的字段名)-->
+    <insert id="insertStudent" parameterType="studnt">
+        <include refid="insertStudent"/>
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="sid != null and sid != ''">#{sid},</if>
-            <if test="sname != null and sname != ''">#{sname},</if>
-            <if test="sage != null">#{sage},</if>
-            <if test="ssex != null and ssex != ''">#{ssex},</if>
-            <if test="url != null and url != ''">#{url}</if>
+            <if test="sid != null and sid != ''">
+                #{sid},
+            </if>
+            <if test="sname != null and sname != ''">
+                #{sname},
+            </if>
+            <if test="sage != null">
+                #{sage},
+            </if>
+            <if test="ssex != null and ssex != ''">
+                #{ssex},
+            </if>
+            <if test="url != null and url != ''">
+                #{url}
+            </if>
         </trim>
     </insert>
 
     <insert id="insertStudentList" parameterType="list">
-        insert into student(sid,sname,sage,ssex,url) values
+        <include refid="insertStudent"/>
         <foreach item="item" index="index" collection="list" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides=",">
-                <if test="item.sid != null and item.sid != ''">#{item.sid},</if>
-                <if test="item.sname != null and item.sname != ''">#{item.sname},</if>
-                <if test="item.sage != null">#{item.sage},</if>
-                <if test="item.ssex != null and item.ssex != ''">#{item.ssex},</if>
-                <if test="item.url != null and item.url != ''">#{item.url}</if>
+                <if test="item.sid != null and item.sid != ''">
+                    #{item.sid},
+                </if>
+                <if test="item.sname != null and item.sname != ''">
+                    #{item.sname},
+                </if>
+                <if test="item.sage != null">
+                    #{item.sage},
+                </if>
+                <if test="item.ssex != null and item.ssex != ''">
+                    #{item.ssex},
+                </if>
+                <if test="item.url != null and item.url != ''">
+                    #{item.url}
+                </if>
             </trim>
         </foreach>
     </insert>
@@ -37,10 +62,18 @@
     <update id="updateSrudent" parameterType="studnt">
         update student
         <trim prefix="set" suffixOverrides=",">
-            <if test="sname != null and sname != ''">sname = #{sname},</if>
-            <if test="sage != null">sage = #{sage},</if>
-            <if test="ssex != null and ssex != ''">ssex = #{ssex},</if>
-            <if test="url != null and url != ''">url = #{url}</if>
+            <if test="sname != null and sname != ''">
+                sname = #{sname},
+            </if>
+            <if test="sage != null">
+                sage = #{sage},
+            </if>
+            <if test="ssex != null and ssex != ''">
+                ssex = #{ssex},
+            </if>
+            <if test="url != null and url != ''">
+                url = #{url}
+            </if>
         </trim>
         <where>
             <if test="sid != null and sid != ''">
@@ -79,14 +112,33 @@
     <select id="selectById" resultType="mybatis.entry.Studnt" parameterType="string">
         <include refid="selectStudent"/>
         where 1=1
-        <if test="id != null and id != ''">and sid = #{id}</if>
+        <if test="id != null and id != ''">
+            and sid = #{id}
+        </if>
     </select>
 
 
     <select id="selectBySexAndName" resultType="mybatis.entry.Studnt">
         <include refid="selectStudent"/>
         where 1=1
-        <if test="sex != null and sex != ''">and ssex = #{sex}</if>
-        <if test="name != null and name != ''">and sname = #{name}</if>
+        <if test="sex != null and sex != ''">
+            and ssex = #{sex}
+        </if>
+        <if test="name != null and name != ''">
+            and sname = #{name}
+        </if>
+    </select>
+
+
+    <select id="selectByIdAndName" resultType="mybatis.entry.Studnt">
+        select * from student
+        <where>
+            <if test="id != null and id != ''">
+                and sid = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and sname = #{name}
+            </if>
+        </where>
     </select>
 </mapper>

@@ -1,6 +1,7 @@
 package mybatis.service.impl;
 
 import mybatis.entry.Course;
+import mybatis.entry.Stu;
 import mybatis.mapper.CourseMapper;
 import mybatis.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class CourseServiceImpl implements CourseService {
     private CourseMapper courseMapper;
 
     @Override
-    public List<Course> manyToMany() {
+    public List<Stu> manyToMany() {
         return courseMapper.manyToMany();
     }
 }

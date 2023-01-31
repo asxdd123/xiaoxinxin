@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: 就不告诉你
@@ -62,6 +63,12 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public int deleteSrudentByNameAndSex(String name, String sex) {
         return studentMapper.deleteSrudentByNameAndSex(name,sex);
+    }
+
+
+    @Override
+    public Studnt selectByIdAndName(Map<String, Object> map) {
+        return studentMapper.selectByIdAndName(map);
     }
 
     /**

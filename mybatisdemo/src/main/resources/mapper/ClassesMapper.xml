@@ -28,16 +28,17 @@
         </collection>
     </resultMap>
 
-    <select id="oneToMany" resultMap="oneToManyMap">
-        SELECT
-            c.id cid,
-            c.name cname,
-            s.id sid,
-            s.name sname,
-            s.age
-        FROM
-            classes c,stu s
-        WHERE
-            c.id=s.cid
-    </select>
+<!--    一对多基于XML实现-->
+<!--    <select id="oneToMany" resultMap="oneToManyMap">-->
+<!--        SELECT-->
+<!--            c.id cid,-->
+<!--            c.name cname,-->
+<!--            s.id sid,-->
+<!--            s.name sname,-->
+<!--            s.age-->
+<!--        FROM-->
+<!--            classes c,stu s-->
+<!--        WHERE-->
+<!--            c.id=s.cid-->
+<!--    </select>-->
 </mapper>

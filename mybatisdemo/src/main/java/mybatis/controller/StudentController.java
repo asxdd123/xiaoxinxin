@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
@@ -40,6 +41,16 @@ public class StudentController {
     @RequestMapping("/aa")
     public PageInfo<Studnt> selectList() {
         return studentService.selectList();
+    }
+
+    /**
+     * 基于参数封装成Map结构带入XML中查询
+     * @param map
+     * @return
+     */
+    @RequestMapping("/as")
+    public Studnt selectByIdAndName(@RequestBody Map<String, Object> map) {
+        return studentService.selectByIdAndName(map);
     }
 
     /**
@@ -101,13 +112,14 @@ public class StudentController {
 
     /**
      * 根据条件批量删除
+     *
      * @param name
      * @param sex
      * @return
      */
     @RequestMapping("/qq")
     public int deleteSrudentByNameAndSex(@RequestParam("name") String name, @RequestParam("sex") String sex) {
-        return studentService.deleteSrudentByNameAndSex(name,sex);
+        return studentService.deleteSrudentByNameAndSex(name, sex);
     }
 
 
